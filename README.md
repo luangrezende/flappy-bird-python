@@ -2,13 +2,7 @@
 
 ![Python](https://img.shields.io/badge/python-v3.6+-blue.svg)
 ![Pygame](https://img.shields.io/badge/pygame-v2.6+-green.svg)
-![License](https://img.shields.io/badge/license-Every time I create a new version tag (like `v1.0.0`), GitHub Actions automatically:
-
-1. **Installs** all dependencies (Pygame, PyInstaller)
-2. **Builds** a standalone Windows executable with embedded assets and icon
-3. **Creates** a release page with download links
-4. **Uploads** the `.exe` file ready to run
-5. **Publishes** release notes.svg)
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Platform](https://img.shields.io/badge/platform-windows%20%7C%20macOS%20%7C%20linux-lightgrey)
 ![Status](https://img.shields.io/badge/status-active-success.svg)
 
@@ -204,16 +198,15 @@ Performance is solid:
 - Uses about 20MB of RAM (less than a single browser tab)
 - CPU usage stays under 3% (won't make your laptop fans spin up)
 
-## Automatic Builds
+## 🤖 Automatic Builds
 
 Every time I create a new version tag (like `v1.0.0`), GitHub Actions automatically:
 
-1. **Installs** all dependencies (Pygame, PyInstaller, Pillow)
-2. **Creates** a Windows icon from the bird sprite
-3. **Builds** a standalone Windows executable with embedded assets
-4. **Creates** a release page with download links
-5. **Uploads** the `.exe` file ready to run
-6. **Publishes** release notes
+1. **Installs** all dependencies (Pygame, PyInstaller)
+2. **Builds** a standalone Windows executable with embedded assets and icon
+3. **Creates** a release page with download links
+4. **Uploads** the `.exe` file ready to run
+5. **Publishes** release notes
 
 The executable includes everything needed - no Python installation required! Just download and double-click to play.
 
