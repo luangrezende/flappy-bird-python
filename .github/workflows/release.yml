@@ -34,7 +34,7 @@ jobs:
     
     - name: Build executable
       run: |
-        pyinstaller --onefile --windowed --add-data "assets;assets" --add-data "config.json;." --icon=assets/bluebird-downflap.png --name "FlappyBird" flappy_bird_game.py
+        pyinstaller --onefile --windowed --add-data "assets;assets" --add-data "config.json;." --icon=assets/icon.ico --name "FlappyBird" flappy_bird_game.py
     
     - name: Set version info
       id: version

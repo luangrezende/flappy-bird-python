@@ -4,26 +4,19 @@ import random
 import json
 import os
 
-def load_config():
+def get_base_path():
     if getattr(sys, 'frozen', False):
-        base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
+        return getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
     else:
-        base_path = os.path.dirname(os.path.abspath(__file__))
-    
-    config_path = os.path.join(base_path, "config.json")
-    
+        return os.path.dirname(os.path.abspath(__file__))
+
+def load_config():
+    config_path = os.path.join(get_base_path(), "config.json")
     with open(config_path, 'r') as f:
-        config = json.load(f)
-        print("Configuration loaded from config.json")
-        return config
+        return json.load(f)
 
 def load_image(filename):
-    if getattr(sys, 'frozen', False):
-        base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
-    else:
-        base_path = os.path.dirname(os.path.abspath(__file__))
-    
-    image_path = os.path.join(base_path, filename)
+    image_path = os.path.join(get_base_path(), filename)
     return pygame.image.load(image_path)
 
 def show_preset_menu_gui(screen, config):
@@ -91,12 +84,12 @@ def show_preset_menu_gui(screen, config):
         clock.tick(60)
 
 def apply_preset(preset_choice, config):
-    if preset_choice == '1':
-        return config['difficulty_presets']['easy']
-    elif preset_choice == '2':
-        return config['difficulty_presets']['normal']
-    else:
-        return config['difficulty_presets']['hard']
+    presets = {
+        '1': config['difficulty_presets']['easy'],
+        '2': config['difficulty_presets']['normal'],
+        '3': config['difficulty_presets']['hard']
+    }
+    return presets.get(preset_choice, config['difficulty_presets']['hard'])
 
 config = load_config()
 display_settings = config["display_settings"]
@@ -109,8 +102,6 @@ pygame.display.set_caption("Flappy Bird - Select Difficulty")
 
 preset_choice = show_preset_menu_gui(screen, config)
 game_settings = apply_preset(preset_choice, config)
-
-config["game_settings"] = game_settings
 
 pygame.display.set_caption("Flappy Bird")
 

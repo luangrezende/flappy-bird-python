@@ -2,7 +2,13 @@
 
 ![Python](https://img.shields.io/badge/python-v3.6+-blue.svg)
 ![Pygame](https://img.shields.io/badge/pygame-v2.6+-green.svg)
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![License](https://img.shields.io/badge/license-Every time I create a new version tag (like `v1.0.0`), GitHub Actions automatically:
+
+1. **Installs** all dependencies (Pygame, PyInstaller)
+2. **Builds** a standalone Windows executable with embedded assets and icon
+3. **Creates** a release page with download links
+4. **Uploads** the `.exe` file ready to run
+5. **Publishes** release notes.svg)
 ![Platform](https://img.shields.io/badge/platform-windows%20%7C%20macOS%20%7C%20linux-lightgrey)
 ![Status](https://img.shields.io/badge/status-active-success.svg)
 
@@ -62,6 +68,8 @@ This isn't just another Flappy Bird clone. I wanted to create something that cou
    ```bash
    python flappy_bird_game.py
    ```
+
+*Note: The game automatically finds the `config.json` file and `assets/` folder, whether you're running from source or using the standalone executable.*
 
 ## How to Play
 
@@ -178,6 +186,7 @@ flappy-bird-python/
     ├── background-day.png
     ├── bluebird-downflap.png
     ├── gameover.png
+    ├── icon.ico           # Windows executable icon
     └── pipe-green.png
 ```
 
@@ -188,6 +197,7 @@ Built with:
 - **Pygame** - The classic choice for 2D games in Python
 - **JSON** - For configuration (simple and human-readable)
 - **GitHub Actions** - Automatic executable builds for every release
+- **PyInstaller** - Converts Python scripts to standalone executables
 
 Performance is solid:
 - Runs at 60 FPS on pretty much any modern machine
@@ -198,12 +208,14 @@ Performance is solid:
 
 Every time I create a new version tag (like `v1.0.0`), GitHub Actions automatically:
 
-1. **Builds** a Windows executable
-2. **Creates** a release page
-3. **Uploads** the `.exe` file for download
-4. **Publishes** release notes
+1. **Installs** all dependencies (Pygame, PyInstaller, Pillow)
+2. **Creates** a Windows icon from the bird sprite
+3. **Builds** a standalone Windows executable with embedded assets
+4. **Creates** a release page with download links
+5. **Uploads** the `.exe` file ready to run
+6. **Publishes** release notes
 
-This means you always get the latest stable version as a ready-to-run executable!
+The executable includes everything needed - no Python installation required! Just download and double-click to play.
 
 ## Contributing
 
