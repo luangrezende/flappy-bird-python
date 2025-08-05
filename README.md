@@ -8,7 +8,7 @@
 
 A clean and simple Flappy Bird clone built with Python and Pygame. What started as a basic recreation turned into a little experiment with configurable gameplay - because sometimes you want the game to be easier, sometimes harder, and sometimes you just want to tweak things until they feel right.
 
-## Quick Play Options
+## 🚀 Quick Play Options
 
 **Just want to play?** → [Download the latest .exe](https://github.com/luangrezende/flappy-bird-python/releases/latest) (No Python needed!)
 
@@ -16,19 +16,19 @@ A clean and simple Flappy Bird clone built with Python and Pygame. What started 
 
 **Curious about the code?** → Check out the clean, comment-free Python below ⬇️
 
-## What Makes This Different
+## ✨ What Makes This Different
 
 This isn't just another Flappy Bird clone. I wanted to create something that could adapt to different skill levels and preferences:
 
-- **Visual Difficulty Selection** - No more console menus! Pick your challenge with a clean in-game interface
-- **Three Balanced Presets** - Easy, Normal, and Hard modes that actually feel different
-- **JSON Configuration** - Tweak physics and gameplay without touching code
-- **Minimal Dependencies** - Just Python and Pygame, nothing fancy
-- **Clean Codebase** - Simple enough to understand and modify
+- **🎮 Visual Difficulty Selection** - No more console menus! Pick your challenge with a clean in-game interface
+- **⚖️ Three Balanced Presets** - Easy, Normal, and Hard modes that actually feel different
+- **⚙️ JSON Configuration** - Tweak physics and gameplay without touching code
+- **📦 Minimal Dependencies** - Just Python and Pygame, nothing fancy
+- **🧹 Clean Codebase** - Simple enough to understand and modify
 
-## Getting Started
+## 🏁 Getting Started
 
-### Download & Play (Easiest Way)
+### 💾 Download & Play (Easiest Way)
 
 **Want to play right now without installing anything?**
 
@@ -38,7 +38,7 @@ This isn't just another Flappy Bird clone. I wanted to create something that cou
 
 *No Python installation required - just download and run!*
 
-### Run from Source (For Developers)
+### 🐍 Run from Source (For Developers)
 
 **Want to see the code or make changes?**
 
@@ -65,7 +65,7 @@ This isn't just another Flappy Bird clone. I wanted to create something that cou
 
 *Note: The game automatically finds the `config.json` file and `assets/` folder, whether you're running from source or using the standalone executable.*
 
-## How to Play
+## 🎮 How to Play
 
 The basics haven't changed - it's still Flappy Bird:
 
@@ -77,11 +77,11 @@ The basics haven't changed - it's still Flappy Bird:
 
 When you start the game, you'll see a clean selection screen with three difficulty options. Use the arrow keys to pick one, hit Enter, and you're flying!
 
-## The Configuration System
+## ⚙️ The Configuration System
 
 Here's where things get interesting. The game reads everything from a `config.json` file, so you can customize the experience without diving into Python code.
 
-### Difficulty Selection Screen
+### 🎯 Difficulty Selection Screen
 
 Instead of a boring console menu, you get a proper in-game interface:
 
@@ -89,7 +89,7 @@ Instead of a boring console menu, you get a proper in-game interface:
 - **🔵 NORMAL** - The classic Flappy Bird experience, balanced and fair
 - **🔴 HARD** - Tight spaces, fast pipes, unforgiving physics (for when you hate yourself)
 
-### Behind the Scenes: config.json
+### 🔧 Behind the Scenes: config.json
 
 The magic happens in this simple JSON file:
 
@@ -126,7 +126,7 @@ The magic happens in this simple JSON file:
 }
 ```
 
-### What Each Setting Does
+### 📊 What Each Setting Does
 
 I spent way too much time tweaking these values to get them to feel right:
 
@@ -138,11 +138,11 @@ I spent way too much time tweaking these values to get them to feel right:
 | `pipe_gap_x` | Horizontal spacing between pipes | More space = more time to react |
 | `pipe_speed` | How fast pipes move toward you | 1.5 is chill, 3 is intense |
 
-## Customizing Your Experience
+## 🎨 Customizing Your Experience
 
 Want to create your own difficulty? Edit the `config.json` file! Here are some ideas:
 
-### "Chill Mode" (for coffee breaks)
+### ☕ "Chill Mode" (for coffee breaks)
 ```json
 "custom": {
   "gravity": 0.1,
@@ -153,7 +153,7 @@ Want to create your own difficulty? Edit the `config.json` file! Here are some i
 }
 ```
 
-### "Nightmare Mode" (for masochists)
+### 💀 "Nightmare Mode" (for masochists)
 ```json
 "nightmare": {
   "gravity": 0.8,
@@ -166,7 +166,7 @@ Want to create your own difficulty? Edit the `config.json` file! Here are some i
 
 Just add your preset to the `difficulty_presets` section and modify the code to include it in the selection screen.
 
-## Project Structure
+## 📁 Project Structure
 
 Keeping it simple:
 
@@ -184,7 +184,7 @@ flappy-bird-python/
     └── pipe-green.png
 ```
 
-## Technical Stuff
+## 🔧 Technical Stuff
 
 Built with:
 - **Python 3.6+** - Because it's 2025 and we should all be using modern Python
@@ -210,7 +210,7 @@ Every time I create a new version tag (like `v1.0.0`), GitHub Actions automatica
 
 The executable includes everything needed - no Python installation required! Just download and double-click to play.
 
-## Contributing
+## 🤝 Contributing
 
 Found a bug? Have an idea for improvement? I'd love to hear about it!
 
@@ -222,7 +222,7 @@ This started as a weekend project, but it's been fun to work on. If you want to 
 4. Test it (please!)
 5. Submit a pull request
 
-### Release Process
+### 🔄 Release Process
 
 Want to know how new versions are made?
 
@@ -239,14 +239,14 @@ Want to know how new versions are made?
 
 Both methods create a release with the FlappyBird.exe ready for download!
 
-Ideas for future improvements:
+### 💡 Ideas for future improvements:
 - Sound effects (the original had that iconic "ding" sound)
 - High score persistence
 - More visual themes
 - Power-ups (maybe controversial for Flappy Bird purists)
 - Multiplayer mode (imagine the chaos)
 
-## License
+## 📄 License
 
 MIT License - basically, do whatever you want with this code. Build on it, break it, sell it, use it in your portfolio, show it to your cat. I just ask that you keep the original license notice if you redistribute it.
 
