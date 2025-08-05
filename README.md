@@ -8,6 +8,14 @@
 
 A clean and simple Flappy Bird clone built with Python and Pygame. What started as a basic recreation turned into a little experiment with configurable gameplay - because sometimes you want the game to be easier, sometimes harder, and sometimes you just want to tweak things until they feel right.
 
+## 🎯 Quick Play Options
+
+**Just want to play?** → [Download the latest .exe](https://github.com/luangrezende/flappy-bird-python/releases/latest) (No Python needed!)
+
+**Want to customize or learn?** → Clone this repo and run from source
+
+**Curious about the code?** → Check out the clean, comment-free Python below ⬇️
+
 ## What Makes This Different
 
 This isn't just another Flappy Bird clone. I wanted to create something that could adapt to different skill levels and preferences:
@@ -18,15 +26,27 @@ This isn't just another Flappy Bird clone. I wanted to create something that cou
 - **Minimal Dependencies** - Just Python and Pygame, nothing fancy
 - **Clean Codebase** - Simple enough to understand and modify
 
-## Getting Started
+## 🚀 Getting Started
 
-### What You'll Need
+### 💾 Download & Play (Easiest Way)
 
+**Want to play right now without installing anything?**
+
+1. **Go to [Releases](https://github.com/luangrezende/flappy-bird-python/releases)**
+2. **Download the latest `FlappyBird.exe`**
+3. **Double-click and play!**
+
+*No Python installation required - just download and run!*
+
+### 🐍 Run from Source (For Developers)
+
+**Want to see the code or make changes?**
+
+#### What You'll Need
 - Python 3.6 or newer
 - That's pretty much it!
 
-### Installation
-
+#### Installation
 1. **Grab the code**
    ```bash
    git clone https://github.com/luangrezende/flappy-bird-python.git
@@ -167,13 +187,25 @@ Built with:
 - **Python 3.6+** - Because it's 2025 and we should all be using modern Python
 - **Pygame** - The classic choice for 2D games in Python
 - **JSON** - For configuration (simple and human-readable)
+- **GitHub Actions** - Automatic executable builds for every release
 
 Performance is solid:
 - Runs at 60 FPS on pretty much any modern machine
 - Uses about 20MB of RAM (less than a single browser tab)
 - CPU usage stays under 3% (won't make your laptop fans spin up)
 
-## Contributing
+## 🤖 Automatic Builds
+
+Every time I create a new version tag (like `v1.0.0`), GitHub Actions automatically:
+
+1. **Builds** a Windows executable
+2. **Creates** a release page
+3. **Uploads** the `.exe` file for download
+4. **Publishes** release notes
+
+This means you always get the latest stable version as a ready-to-run executable!
+
+## 🤝 Contributing
 
 Found a bug? Have an idea for improvement? I'd love to hear about it!
 
@@ -184,6 +216,15 @@ This started as a weekend project, but it's been fun to work on. If you want to 
 3. Make your changes
 4. Test it (please!)
 5. Submit a pull request
+
+### 🔄 Release Process
+
+Want to know how new versions are made?
+
+1. **Code changes** get committed to main branch
+2. **Create a tag**: `git tag v1.1.0 && git push origin v1.1.0`
+3. **GitHub Actions** automatically builds and releases the executable
+4. **Users** can download the new version from the Releases page
 
 Ideas for future improvements:
 - Sound effects (the original had that iconic "ding" sound)
