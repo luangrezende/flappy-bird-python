@@ -2,12 +2,29 @@ import pygame
 import sys
 import random
 import json
+import os
 
 def load_config():
-    with open("config.json", 'r') as f:
+    if getattr(sys, 'frozen', False):
+        base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
+    else:
+        base_path = os.path.dirname(os.path.abspath(__file__))
+    
+    config_path = os.path.join(base_path, "config.json")
+    
+    with open(config_path, 'r') as f:
         config = json.load(f)
         print("Configuration loaded from config.json")
         return config
+
+def load_image(filename):
+    if getattr(sys, 'frozen', False):
+        base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
+    else:
+        base_path = os.path.dirname(os.path.abspath(__file__))
+    
+    image_path = os.path.join(base_path, filename)
+    return pygame.image.load(image_path)
 
 def show_preset_menu_gui(screen, config):
     clock = pygame.time.Clock()
@@ -107,10 +124,10 @@ PIPE_GAP_Y = game_settings["pipe_gap_y"]
 PIPE_GAP_X = game_settings["pipe_gap_x"]
 PIPE_SPEED = game_settings["pipe_speed"]
 
-BG_IMG = pygame.image.load("assets/background-day.png")
-BIRD_IMG = pygame.image.load("assets/bluebird-downflap.png")
-PIPE_IMG = pygame.image.load("assets/pipe-green.png")
-GAME_OVER_IMG = pygame.image.load("assets/gameover.png")
+BG_IMG = load_image("assets/background-day.png")
+BIRD_IMG = load_image("assets/bluebird-downflap.png")
+PIPE_IMG = load_image("assets/pipe-green.png")
+GAME_OVER_IMG = load_image("assets/gameover.png")
 
 BG_IMG = pygame.transform.scale(BG_IMG, (SCREEN_WIDTH, SCREEN_HEIGHT))
 BIRD_IMG = pygame.transform.scale(BIRD_IMG, (50, 35))
