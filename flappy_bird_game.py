@@ -58,6 +58,17 @@ def show_preset_menu_gui(screen, config):
                 elif event.key == pygame.K_ESCAPE:
                     pygame.quit()
                     sys.exit()
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                if event.button == 1:
+                    mouse_x, mouse_y = event.pos
+                    
+                    start_y = 200
+                    for i, option in enumerate(options):
+                        y_pos = start_y + i * 80
+                        option_rect = pygame.Rect(100, y_pos - 10, 200, 60)
+                        
+                        if option_rect.collidepoint(mouse_x, mouse_y):
+                            return option["key"]
         
         screen.fill(BLACK)
         
@@ -76,7 +87,7 @@ def show_preset_menu_gui(screen, config):
             option_rect = option_text.get_rect(center=(screen.get_width()//2, y_pos + 15))
             screen.blit(option_text, option_rect)
         
-        inst_text = pygame.font.Font(None, 24).render("↑↓ to select, ENTER to play", True, WHITE)
+        inst_text = pygame.font.Font(None, 24).render("↑↓ to select, ENTER/CLICK to play", True, WHITE)
         inst_rect = inst_text.get_rect(center=(screen.get_width()//2, 450))
         screen.blit(inst_text, inst_rect)
         
@@ -189,6 +200,9 @@ def main():
                 elif event.key == pygame.K_ESCAPE:
                     pygame.quit()
                     sys.exit()
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                if event.button == 1:
+                    bird.flap()
 
         bird.update()
 

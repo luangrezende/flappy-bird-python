@@ -69,13 +69,13 @@ This isn't just another Flappy Bird clone. I wanted to create something that cou
 
 The basics haven't changed - it's still Flappy Bird:
 
-- **SPACEBAR** - Make the bird flap (the only control you need!)
+- **SPACEBAR or LEFT CLICK** - Make the bird flap (the only control you need!)
 - **ESC** - Quit when you've had enough
 - Avoid the green pipes
 - Each pipe you pass = 1 point
 - Try not to rage quit (harder than it sounds)
 
-When you start the game, you'll see a clean selection screen with three difficulty options. Use the arrow keys to pick one, hit Enter, and you're flying!
+When you start the game, you'll see a clean selection screen with three difficulty options. Use the arrow keys to pick one, hit Enter/Click, and you're flying!
 
 ## ⚙️ The Configuration System
 
