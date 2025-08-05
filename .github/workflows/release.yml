@@ -4,6 +4,12 @@ on:
   push:
     tags:
       - 'v*'
+  workflow_dispatch:
+    inputs:
+      version_name:
+        description: 'Release version name (e.g., v1.0.1-dev)'
+        required: true
+        default: 'v1.0.0-manual'
 
 permissions:
   contents: write
@@ -30,14 +36,25 @@ jobs:
       run: |
         pyinstaller --onefile --windowed --add-data "assets;assets" --add-data "config.json;." --name "FlappyBird" flappy_bird_game.py
     
+    - name: Set version info
+      id: version
+      run: |
+        if ("${{ github.event_name }}" -eq "push") {
+          echo "version=${{ github.ref }}" >> $env:GITHUB_OUTPUT
+          echo "version_name=Flappy Bird ${{ github.ref }}" >> $env:GITHUB_OUTPUT
+        } else {
+          echo "version=${{ github.event.inputs.version_name }}" >> $env:GITHUB_OUTPUT
+          echo "version_name=Flappy Bird ${{ github.event.inputs.version_name }}" >> $env:GITHUB_OUTPUT
+        }
+    
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ github.ref }}
-        release_name: Flappy Bird ${{ github.ref }}
+        tag_name: ${{ steps.version.outputs.version }}
+        release_name: ${{ steps.version.outputs.version_name }}
         body: |
           🐦 **Flappy Bird - Windows Executable**
           

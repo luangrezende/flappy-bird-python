@@ -8,7 +8,7 @@
 
 A clean and simple Flappy Bird clone built with Python and Pygame. What started as a basic recreation turned into a little experiment with configurable gameplay - because sometimes you want the game to be easier, sometimes harder, and sometimes you just want to tweak things until they feel right.
 
-## 🎯 Quick Play Options
+## Quick Play Options
 
 **Just want to play?** → [Download the latest .exe](https://github.com/luangrezende/flappy-bird-python/releases/latest) (No Python needed!)
 
@@ -26,9 +26,9 @@ This isn't just another Flappy Bird clone. I wanted to create something that cou
 - **Minimal Dependencies** - Just Python and Pygame, nothing fancy
 - **Clean Codebase** - Simple enough to understand and modify
 
-## 🚀 Getting Started
+## Getting Started
 
-### 💾 Download & Play (Easiest Way)
+### Download & Play (Easiest Way)
 
 **Want to play right now without installing anything?**
 
@@ -38,7 +38,7 @@ This isn't just another Flappy Bird clone. I wanted to create something that cou
 
 *No Python installation required - just download and run!*
 
-### 🐍 Run from Source (For Developers)
+### Run from Source (For Developers)
 
 **Want to see the code or make changes?**
 
@@ -194,7 +194,7 @@ Performance is solid:
 - Uses about 20MB of RAM (less than a single browser tab)
 - CPU usage stays under 3% (won't make your laptop fans spin up)
 
-## 🤖 Automatic Builds
+## Automatic Builds
 
 Every time I create a new version tag (like `v1.0.0`), GitHub Actions automatically:
 
@@ -205,7 +205,7 @@ Every time I create a new version tag (like `v1.0.0`), GitHub Actions automatica
 
 This means you always get the latest stable version as a ready-to-run executable!
 
-## 🤝 Contributing
+## Contributing
 
 Found a bug? Have an idea for improvement? I'd love to hear about it!
 
@@ -217,14 +217,22 @@ This started as a weekend project, but it's been fun to work on. If you want to 
 4. Test it (please!)
 5. Submit a pull request
 
-### 🔄 Release Process
+### Release Process
 
 Want to know how new versions are made?
 
+**Option 1: Automatic (for official releases)**
 1. **Code changes** get committed to main branch
 2. **Create a tag**: `git tag v1.1.0 && git push origin v1.1.0`
 3. **GitHub Actions** automatically builds and releases the executable
-4. **Users** can download the new version from the Releases page
+
+**Option 2: Manual (for testing or quick builds)**
+1. Go to **GitHub → Actions → "Build and Release"**
+2. Click **"Run workflow"**
+3. Enter a version name (e.g., `v1.0.1-test`)
+4. Click **"Run workflow"** - that's it!
+
+Both methods create a release with the FlappyBird.exe ready for download!
 
 Ideas for future improvements:
 - Sound effects (the original had that iconic "ding" sound)
