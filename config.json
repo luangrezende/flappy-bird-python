@@ -2,29 +2,19 @@
   "display_settings": {
     "screen_width": 400,
     "screen_height": 600,
-    "fps": 60
+    "fps": 120
   },
-  "difficulty_presets": {
-    "easy": {
-      "gravity": 0.2,
-      "jump_force": -5,
-      "pipe_gap_y": 200,
-      "pipe_gap_x": 250,
-      "pipe_speed": 1.5
-    },
-    "normal": {
-      "gravity": 0.3,
-      "jump_force": -6,
-      "pipe_gap_y": 180,
-      "pipe_gap_x": 200,
-      "pipe_speed": 2
-    },
-    "hard": {
-      "gravity": 0.5,
-      "jump_force": -8,
-      "pipe_gap_y": 140,
-      "pipe_gap_x": 150,
-      "pipe_speed": 3
+  "dynamic_difficulty": {
+    "description": "Bird physics stay constant, only pipe speed and frequency change",
+    "progression_info": {
+      "level_up_every": 3,
+      "bird_gravity": 0.3,
+      "bird_jump_force": -6,
+      "pipe_gap_size": 180,
+      "starting_pipe_speed": 1.0,
+      "max_pipe_speed": 6.0,
+      "starting_pipe_frequency": 150,
+      "min_pipe_frequency": 80
     }
   }
 }

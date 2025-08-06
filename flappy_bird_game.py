@@ -19,88 +19,26 @@ def load_image(filename):
     image_path = os.path.join(get_base_path(), filename)
     return pygame.image.load(image_path)
 
-def show_preset_menu_gui(screen, config):
-    clock = pygame.time.Clock()
-    font = pygame.font.Font(None, 48)
+def calculate_dynamic_difficulty(score):
+    config = load_config()
+    progression = config["dynamic_difficulty"]["progression_info"]
     
-    WHITE = (255, 255, 255)
-    BLACK = (0, 0, 0)
-    GREEN = (100, 255, 100)
-    BLUE = (100, 150, 255)
-    RED = (255, 100, 100)
+    gravity = progression["bird_gravity"]
+    jump_force = progression["bird_jump_force"]
+    pipe_gap = progression["pipe_gap_size"]
     
-    options = [
-        {"name": "EASY", "color": GREEN, "key": "1"},
-        {"name": "NORMAL", "color": BLUE, "key": "2"},
-        {"name": "HARD", "color": RED, "key": "3"}
-    ]
+    difficulty_multiplier = score // progression["level_up_every"]
     
-    selected = 0
+    pipe_speed = min(progression["starting_pipe_speed"] + (difficulty_multiplier * 0.3), progression["max_pipe_speed"])
+    pipe_frequency = max(progression["starting_pipe_frequency"] - (difficulty_multiplier * 8), progression["min_pipe_frequency"])
     
-    while True:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-            elif event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_UP:
-                    selected = (selected - 1) % len(options)
-                elif event.key == pygame.K_DOWN:
-                    selected = (selected + 1) % len(options)
-                elif event.key == pygame.K_RETURN or event.key == pygame.K_SPACE:
-                    return options[selected]["key"]
-                elif event.key == pygame.K_1:
-                    return "1"
-                elif event.key == pygame.K_2:
-                    return "2"
-                elif event.key == pygame.K_3:
-                    return "3"
-                elif event.key == pygame.K_ESCAPE:
-                    pygame.quit()
-                    sys.exit()
-            elif event.type == pygame.MOUSEBUTTONDOWN:
-                if event.button == 1:
-                    mouse_x, mouse_y = event.pos
-                    
-                    start_y = 200
-                    for i, option in enumerate(options):
-                        y_pos = start_y + i * 80
-                        option_rect = pygame.Rect(100, y_pos - 10, 200, 60)
-                        
-                        if option_rect.collidepoint(mouse_x, mouse_y):
-                            return option["key"]
-        
-        screen.fill(BLACK)
-        
-        title_text = font.render("FLAPPY BIRD", True, WHITE)
-        title_rect = title_text.get_rect(center=(screen.get_width()//2, 120))
-        screen.blit(title_text, title_rect)
-        
-        start_y = 200
-        for i, option in enumerate(options):
-            y_pos = start_y + i * 80
-            
-            if i == selected:
-                pygame.draw.rect(screen, option["color"], (100, y_pos - 10, 200, 60), 3)
-            
-            option_text = font.render(option['name'], True, option["color"])
-            option_rect = option_text.get_rect(center=(screen.get_width()//2, y_pos + 15))
-            screen.blit(option_text, option_rect)
-        
-        inst_text = pygame.font.Font(None, 24).render("↑↓ to select, ENTER/CLICK to play", True, WHITE)
-        inst_rect = inst_text.get_rect(center=(screen.get_width()//2, 450))
-        screen.blit(inst_text, inst_rect)
-        
-        pygame.display.flip()
-        clock.tick(60)
-
-def apply_preset(preset_choice, config):
-    presets = {
-        '1': config['difficulty_presets']['easy'],
-        '2': config['difficulty_presets']['normal'],
-        '3': config['difficulty_presets']['hard']
+    return {
+        'gravity': gravity,
+        'jump_force': jump_force,
+        'pipe_gap_y': pipe_gap,
+        'pipe_speed': pipe_speed,
+        'pipe_frequency': pipe_frequency
     }
-    return presets.get(preset_choice, config['difficulty_presets']['hard'])
 
 config = load_config()
 display_settings = config["display_settings"]
@@ -109,22 +47,11 @@ pygame.init()
 SCREEN_WIDTH = display_settings["screen_width"]
 SCREEN_HEIGHT = display_settings["screen_height"]
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-pygame.display.set_caption("Flappy Bird - Select Difficulty")
-
-preset_choice = show_preset_menu_gui(screen, config)
-game_settings = apply_preset(preset_choice, config)
-
 pygame.display.set_caption("Flappy Bird")
 
 WHITE = (255, 255, 255)
 FPS = display_settings["fps"]
 clock = pygame.time.Clock()
-
-GRAVITY = game_settings["gravity"]
-JUMP_FORCE = game_settings["jump_force"]
-PIPE_GAP_Y = game_settings["pipe_gap_y"]
-PIPE_GAP_X = game_settings["pipe_gap_x"]
-PIPE_SPEED = game_settings["pipe_speed"]
 
 BG_IMG = load_image("assets/background-day.png")
 BIRD_IMG = load_image("assets/bluebird-downflap.png")
@@ -140,10 +67,13 @@ PIPE_FLIPPED_IMG = pygame.transform.flip(PIPE_IMG, False, True)
 
 class Bird:
     def __init__(self):
+        config = load_config()
+        progression = config["dynamic_difficulty"]["progression_info"]
+        
         self.x = 100
         self.y = SCREEN_HEIGHT // 2
-        self.gravity = GRAVITY
-        self.lift = JUMP_FORCE
+        self.gravity = progression["bird_gravity"]
+        self.lift = progression["bird_jump_force"]
         self.velocity = 0
 
     def draw(self):
@@ -165,9 +95,10 @@ class Bird:
         self.velocity = self.lift
 
 class Pipe:
-    def __init__(self, x):
+    def __init__(self, x, difficulty_params):
         self.x = x
-        self.gap = PIPE_GAP_Y
+        self.gap = difficulty_params['pipe_gap_y']
+        self.speed = difficulty_params['pipe_speed']
         self.top = random.randint(100, SCREEN_HEIGHT - 200)
         self.bottom = self.top + self.gap
 
@@ -176,18 +107,25 @@ class Pipe:
         screen.blit(PIPE_IMG, (self.x, self.bottom))
 
     def update(self):
-        self.x -= PIPE_SPEED
+        self.x -= self.speed
 
     def off_screen(self):
         return self.x < -PIPE_IMG.get_width()
 
 def reset_game():
     bird = Bird()
-    pipes = [Pipe(SCREEN_WIDTH)]
+    initial_difficulty = calculate_dynamic_difficulty(0)
+    pipes = [Pipe(SCREEN_WIDTH, initial_difficulty)]
     return bird, pipes, 0
 
 def main():
     bird, pipes, score = reset_game()
+    config = load_config()
+    level_up_every = config["dynamic_difficulty"]["progression_info"]["level_up_every"]
+    
+    font_large = pygame.font.Font(None, 36)
+    font_medium = pygame.font.Font(None, 24)
+    font_small = pygame.font.Font(None, 20)
 
     while True:
         for event in pygame.event.get():
@@ -204,13 +142,15 @@ def main():
                 if event.button == 1:
                     bird.flap()
 
+        current_difficulty = calculate_dynamic_difficulty(score)
+
         bird.update()
 
         for pipe in pipes:
             pipe.update()
             if pipe.off_screen():
                 pipes.remove(pipe)
-                pipes.append(Pipe(SCREEN_WIDTH + PIPE_GAP_X))
+                pipes.append(Pipe(SCREEN_WIDTH + current_difficulty['pipe_frequency'], current_difficulty))
                 score += 1
 
         for pipe in pipes:
@@ -228,9 +168,15 @@ def main():
         for pipe in pipes:
             pipe.draw()
 
-        font = pygame.font.Font(None, 36)
-        score_text = font.render(f"Score: {score}", True, WHITE)
+        score_text = font_large.render(f"Score: {score}", True, WHITE)
         screen.blit(score_text, (10, 10))
+        
+        difficulty_level = (score // level_up_every) + 1
+        diff_text = font_medium.render(f"Level: {difficulty_level}", True, WHITE)
+        screen.blit(diff_text, (10, 50))
+        
+        speed_text = font_small.render(f"Speed: {current_difficulty['pipe_speed']:.1f}", True, WHITE)
+        screen.blit(speed_text, (10, 75))
 
         pygame.display.flip()
         clock.tick(FPS)

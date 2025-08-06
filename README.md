@@ -6,7 +6,7 @@
 ![Platform](https://img.shields.io/badge/platform-windows%20%7C%20macOS%20%7C%20linux-lightgrey)
 ![Status](https://img.shields.io/badge/status-active-success.svg)
 
-A clean and simple Flappy Bird clone built with Python and Pygame. What started as a basic recreation turned into a little experiment with configurable gameplay - because sometimes you want the game to be easier, sometimes harder, and sometimes you just want to tweak things until they feel right.
+A clean and simple Flappy Bird clone built with Python and Pygame. What started as a basic recreation turned into an experiment with dynamic difficulty - because the best games adapt to challenge you as you improve!
 
 ## 🚀 Quick Play Options
 
@@ -18,13 +18,15 @@ A clean and simple Flappy Bird clone built with Python and Pygame. What started 
 
 ## ✨ What Makes This Different
 
-This isn't just another Flappy Bird clone. I wanted to create something that could adapt to different skill levels and preferences:
+This isn't just another Flappy Bird clone. I wanted to create something that keeps the bird responsive while ramping up the challenge:
 
-- **🎮 Visual Difficulty Selection** - No more console menus! Pick your challenge with a clean in-game interface
-- **⚖️ Three Balanced Presets** - Easy, Normal, and Hard modes that actually feel different
-- **⚙️ JSON Configuration** - Tweak physics and gameplay without touching code
+- **🚀 Dynamic Difficulty** - Pipes get faster and more frequent as you score!
+- **⚡ Responsive Bird** - Bird physics stay constant for consistent, skill-based gameplay
+- **📊 Progressive Challenge** - Configurable level progression unlocks faster pipes and tighter spacing
+- **⚙️ JSON Configuration** - Tweak progression curves without touching code
 - **📦 Minimal Dependencies** - Just Python and Pygame, nothing fancy
 - **🧹 Clean Codebase** - Simple enough to understand and modify
+- **🖱️ Mouse & Keyboard** - Click or press spacebar to play
 
 ## 🏁 Getting Started
 
@@ -75,96 +77,74 @@ The basics haven't changed - it's still Flappy Bird:
 - Each pipe you pass = 1 point
 - Try not to rage quit (harder than it sounds)
 
-When you start the game, you'll see a clean selection screen with three difficulty options. Use the arrow keys to pick one, hit Enter/Click, and you're flying!
+The game starts easy and **automatically gets harder** as you progress! The bird stays responsive, but pipes get faster and more frequent. Watch the level and speed counters in the top-left corner.
 
-## ⚙️ The Configuration System
+## ⚙️ Dynamic Difficulty System
 
-Here's where things get interesting. The game reads everything from a `config.json` file, so you can customize the experience without diving into Python code.
+Here's where things get interesting. The **bird physics stay constant** for consistent, skill-based gameplay, but the **environment gets more challenging**!
 
-### 🎯 Difficulty Selection Screen
+### 🎯 How It Works
 
-Instead of a boring console menu, you get a proper in-game interface:
+The bird always feels the same, but the world gets faster:
 
-- **🟢 EASY** - Gentle physics, bigger gaps, slower pace (great for beginners or when you're tired)
-- **🔵 NORMAL** - The classic Flappy Bird experience, balanced and fair
-- **🔴 HARD** - Tight spaces, fast pipes, unforgiving physics (for when you hate yourself)
+- **Level 1 (0-2 points)**: Slow pipes, comfortable spacing
+- **Level 2 (3-5 points)**: Faster pipes, tighter timing
+- **Level 3 (6-8 points)**: Much faster pipes, frequent obstacles
+- **And so on...** - The speed never stops increasing!
 
-### 🔧 Behind the Scenes: config.json
+### 🔧 Behind the Scenes: Smart Progression
 
-The magic happens in this simple JSON file:
+**Bird Physics (Always Constant):**
+- Gravity: 0.3 (responsive)
+- Jump Force: -6 (strong and precise)
+- Gap Size: 180px (fair but challenging)
+
+**Dynamic Elements:**
+
+The magic happens through mathematical progression based on your score:
 
 ```json
 {
-  "display_settings": {
-    "screen_width": 400,
-    "screen_height": 600,
-    "fps": 60
-  },
-  "difficulty_presets": {
-    "easy": {
-      "gravity": 0.2,
-      "jump_force": -5,
-      "pipe_gap_y": 200,
-      "pipe_gap_x": 250,
-      "pipe_speed": 1.5
-    },
-    "normal": {
-      "gravity": 0.3,
-      "jump_force": -6,
-      "pipe_gap_y": 180,
-      "pipe_gap_x": 200,
-      "pipe_speed": 2
-    },
-    "hard": {
-      "gravity": 0.5,
-      "jump_force": -8,
-      "pipe_gap_y": 140,
-      "pipe_gap_x": 150,
-      "pipe_speed": 3
+  "dynamic_difficulty": {
+    "progression_info": {
+      "level_up_every": 3,
+      "bird_gravity": 0.3,
+      "bird_jump_force": -6,
+      "pipe_gap_size": 180,
+      "starting_pipe_speed": 1.0,
+      "max_pipe_speed": 6.0,
+      "starting_pipe_frequency": 150,
+      "min_pipe_frequency": 80
     }
   }
 }
 ```
 
-### 📊 What Each Setting Does
+### 📊 How Difficulty Progression Works
 
-I spent way too much time tweaking these values to get them to feel right:
+The game keeps bird physics constant but ramps up the challenge:
 
-| Setting | What It Controls | My Notes |
-|---------|-----------------|----------|
-| `gravity` | How fast the bird falls | 0.2 feels floaty, 0.5 feels like a brick |
-| `jump_force` | Strength of each flap | Negative numbers! -5 is gentle, -8 is powerful |
-| `pipe_gap_y` | Vertical space between pipes | 200 is forgiving, 140 will test your patience |
-| `pipe_gap_x` | Horizontal spacing between pipes | More space = more time to react |
-| `pipe_speed` | How fast pipes move toward you | 1.5 is chill, 3 is intense |
+| Parameter | Starting Value | Effect | Max Value |
+|-----------|---------------|--------|-----------|
+| `bird_gravity` | 0.3 | How fast the bird falls | 0.3 (constant) |
+| `bird_jump_force` | -6 | Strength of each flap | -6 (constant) |
+| `pipe_gap_size` | 180px | Vertical space between pipes | 180px (constant) |
+| `pipe_speed` | 1.0 | How fast pipes move toward you | 6.0 |
+| `pipe_frequency` | 150px | Distance between pipe sets | 80px |
 
-## 🎨 Customizing Your Experience
+**Formula**: Progressive scoring = faster pipes + more frequent obstacles = skill-based challenge!
 
-Want to create your own difficulty? Edit the `config.json` file! Here are some ideas:
+## 🎨 Customizing the Progression
 
-### ☕ "Chill Mode" (for coffee breaks)
-```json
-"custom": {
-  "gravity": 0.1,
-  "jump_force": -4,
-  "pipe_gap_y": 250,
-  "pipe_gap_x": 300,
-  "pipe_speed": 1
-}
-```
+Want to tweak how the challenge scales? Edit the `config.json` file!
 
-### 💀 "Nightmare Mode" (for masochists)
-```json
-"nightmare": {
-  "gravity": 0.8,
-  "jump_force": -12,
-  "pipe_gap_y": 120,
-  "pipe_gap_x": 120,
-  "pipe_speed": 4
-}
-```
+You can adjust:
+- **How often difficulty increases** (`level_up_every`)
+- **Bird physics** (gravity, jump force - but keeping them constant is recommended)
+- **Pipe speed progression** (how much faster each level gets)
+- **Pipe frequency** (how much closer pipes get to each other)
 
-Just add your preset to the `difficulty_presets` section and modify the code to include it in the selection screen.
+The system ensures the bird always feels responsive while providing an escalating challenge!
 
 ## 📁 Project Structure
 
@@ -172,8 +152,8 @@ Keeping it simple:
 
 ```
 flappy-bird-python/
-├── flappy_bird_game.py    # The main game (all the magic happens here)
-├── config.json            # Game settings (your playground for tweaking)
+├── flappy_bird_game.py    # The main game with dynamic difficulty
+├── config.json            # Progression settings (your playground for tweaking)
 ├── README.md              # You are here
 ├── LICENSE                # MIT License (use it however you want)
 └── assets/                # Graphics and sprites
@@ -254,5 +234,5 @@ MIT License - basically, do whatever you want with this code. Build on it, break
 
 **Have fun!** 🎮 
 
-And remember - if the game feels too hard, that's what Easy mode is for. If it feels too easy, well... Hard mode is waiting for you. 
+And remember - the bird always feels the same, but the world gets faster and more challenging as you progress! 
 
