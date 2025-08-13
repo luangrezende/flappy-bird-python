@@ -20,13 +20,13 @@ A clean and simple Flappy Bird clone built with Python and Pygame. What started 
 
 This isn't just another Flappy Bird clone. I wanted to create something that keeps the bird responsive while ramping up the challenge:
 
-- ** Dynamic Difficulty** - Pipes get faster and more frequent as you score!
-- ** Responsive Bird** - Bird physics stay constant for consistent, skill-based gameplay
-- ** Progressive Challenge** - Configurable level progression unlocks faster pipes and tighter spacing
-- ** JSON Configuration** - Tweak progression curves without touching code
-- ** Minimal Dependencies** - Just Python and Pygame, nothing fancy
-- ** Clean Codebase** - Simple enough to understand and modify
-- ** Mouse & Keyboard** - Click or press spacebar to play
+- **Dynamic Difficulty** - Pipes get faster and more frequent as you score!
+- **Responsive Bird** - Bird physics stay constant for consistent, skill-based gameplay
+- **Progressive Challenge** - Configurable level progression unlocks faster pipes and tighter spacing
+- **JSON Configuration** - Tweak progression curves without touching code
+- **Minimal Dependencies** - Just Python and Pygame, nothing fancy
+- **Clean Codebase** - Simple enough to understand and modify
+- **Mouse & Keyboard** - Click or press spacebar to play
 
 ## 🏁 Getting Started
 
