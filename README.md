@@ -8,7 +8,7 @@
 
 A clean and simple Flappy Bird clone built with Python and Pygame. What started as a basic recreation turned into an experiment with dynamic difficulty - because the best games adapt to challenge you as you improve!
 
-## 🚀 Quick Play Options
+## Quick Play Options
 
 **Just want to play?** → [Download the latest .exe](https://github.com/luangrezende/flappy-bird-python/releases/latest) (No Python needed!)
 
@@ -20,17 +20,17 @@ A clean and simple Flappy Bird clone built with Python and Pygame. What started 
 
 This isn't just another Flappy Bird clone. I wanted to create something that keeps the bird responsive while ramping up the challenge:
 
-- **🚀 Dynamic Difficulty** - Pipes get faster and more frequent as you score!
-- **⚡ Responsive Bird** - Bird physics stay constant for consistent, skill-based gameplay
-- **📊 Progressive Challenge** - Configurable level progression unlocks faster pipes and tighter spacing
-- **⚙️ JSON Configuration** - Tweak progression curves without touching code
-- **📦 Minimal Dependencies** - Just Python and Pygame, nothing fancy
-- **🧹 Clean Codebase** - Simple enough to understand and modify
-- **🖱️ Mouse & Keyboard** - Click or press spacebar to play
+- ** Dynamic Difficulty** - Pipes get faster and more frequent as you score!
+- ** Responsive Bird** - Bird physics stay constant for consistent, skill-based gameplay
+- ** Progressive Challenge** - Configurable level progression unlocks faster pipes and tighter spacing
+- ** JSON Configuration** - Tweak progression curves without touching code
+- ** Minimal Dependencies** - Just Python and Pygame, nothing fancy
+- ** Clean Codebase** - Simple enough to understand and modify
+- ** Mouse & Keyboard** - Click or press spacebar to play
 
 ## 🏁 Getting Started
 
-### 💾 Download & Play (Easiest Way)
+### Download & Play (Easiest Way)
 
 **Want to play right now without installing anything?**
 
@@ -67,7 +67,7 @@ This isn't just another Flappy Bird clone. I wanted to create something that kee
 
 *Note: The game automatically finds the `config.json` file and `assets/` folder, whether you're running from source or using the standalone executable.*
 
-## 🎮 How to Play
+## How to Play
 
 The basics haven't changed - it's still Flappy Bird:
 
@@ -79,11 +79,11 @@ The basics haven't changed - it's still Flappy Bird:
 
 The game starts easy and **automatically gets harder** as you progress! The bird stays responsive, but pipes get faster and more frequent. Watch the level and speed counters in the top-left corner.
 
-## ⚙️ Dynamic Difficulty System
+## Dynamic Difficulty System
 
 Here's where things get interesting. The **bird physics stay constant** for consistent, skill-based gameplay, but the **environment gets more challenging**!
 
-### 🎯 How It Works
+### How It Works
 
 The bird always feels the same, but the world gets faster:
 
@@ -92,7 +92,7 @@ The bird always feels the same, but the world gets faster:
 - **Level 3 (6-8 points)**: Much faster pipes, frequent obstacles
 - **And so on...** - The speed never stops increasing!
 
-### 🔧 Behind the Scenes: Smart Progression
+### Behind the Scenes: Smart Progression
 
 **Bird Physics (Always Constant):**
 - Gravity: 0.3 (responsive)
@@ -120,7 +120,7 @@ The magic happens through mathematical progression based on your score:
 }
 ```
 
-### 📊 How Difficulty Progression Works
+### How Difficulty Progression Works
 
 The game keeps bird physics constant but ramps up the challenge:
 
@@ -134,7 +134,7 @@ The game keeps bird physics constant but ramps up the challenge:
 
 **Formula**: Progressive scoring = faster pipes + more frequent obstacles = skill-based challenge!
 
-## 🎨 Customizing the Progression
+##  Customizing the Progression
 
 Want to tweak how the challenge scales? Edit the `config.json` file!
 
@@ -146,7 +146,7 @@ You can adjust:
 
 The system ensures the bird always feels responsive while providing an escalating challenge!
 
-## 📁 Project Structure
+## Project Structure
 
 Keeping it simple:
 
@@ -164,7 +164,7 @@ flappy-bird-python/
     └── pipe-green.png
 ```
 
-## 🔧 Technical Stuff
+## Technical Stuff
 
 Built with:
 - **Python 3.6+** - Because it's 2025 and we should all be using modern Python
@@ -178,7 +178,7 @@ Performance is solid:
 - Uses about 20MB of RAM (less than a single browser tab)
 - CPU usage stays under 3% (won't make your laptop fans spin up)
 
-## 🤖 Automatic Builds
+## Automatic Builds
 
 Every time I create a new version tag (like `v1.0.0`), GitHub Actions automatically:
 
@@ -190,7 +190,7 @@ Every time I create a new version tag (like `v1.0.0`), GitHub Actions automatica
 
 The executable includes everything needed - no Python installation required! Just download and double-click to play.
 
-## 🤝 Contributing
+## Contributing
 
 Found a bug? Have an idea for improvement? I'd love to hear about it!
 
@@ -226,13 +226,13 @@ Both methods create a release with the FlappyBird.exe ready for download!
 - Power-ups (maybe controversial for Flappy Bird purists)
 - Multiplayer mode (imagine the chaos)
 
-## 📄 License
+## License
 
 MIT License - basically, do whatever you want with this code. Build on it, break it, sell it, use it in your portfolio, show it to your cat. I just ask that you keep the original license notice if you redistribute it.
 
 ---
 
-**Have fun!** 🎮 
+**Have fun!** 
 
 And remember - the bird always feels the same, but the world gets faster and more challenging as you progress! 
 
